@@ -58,8 +58,8 @@
 			children = (
 				CB096E662C4E42070000201A /* testApp.swift */,
 				CB096E682C4E42070000201A /* ContentView.swift */,
-				CB096E6A2C4E42090000201A /* Assets.xcassets */,
 				CB096E6F2C4E42090000201A /* Info.plist */,
+				CB096E6A2C4E42090000201A /* Assets.xcassets */,
 				CB096E6C2C4E42090000201A /* Preview Content */,
 			);
 			path = test;
