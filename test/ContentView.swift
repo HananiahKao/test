@@ -10,12 +10,15 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
+    @State var text : String = "Hello, world!"
     var body: some View {
         VStack {
             Model3D(named: "Scene", bundle: realityKitContentBundle)
                 .padding(.bottom, 50)
-
-            Text("Hello, world!")
+                .onTapGesture {
+                    text = text == "" ? "Hello,world!" : ""
+                }
+            Text(text)
         }
         .padding()
     }
