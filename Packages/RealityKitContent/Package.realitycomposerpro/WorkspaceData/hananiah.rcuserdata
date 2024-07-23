@@ -9,6 +9,28 @@
   "sceneCameraHistory" : {
     "26DBAE76-5DD8-47B6-A085-1B4ADA111097" : [
       {
+        "date" : 743402121.797104,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          0,
+          0,
+          0,
+          0.8660254,
+          -0.49999994,
+          0,
+          0,
+          0.49999994,
+          0.8660254,
+          0,
+          -0.01606036,
+          0.28857198,
+          0.4422396,
+          1
+        ]
+      },
+      {
         "date" : 743327745.846942,
         "title" : "Untitled",
         "transform" : [
@@ -31,5 +53,6 @@
         ]
       }
     ]
-  }
+  },
+  "selectedSceneRelativePath" : "Scene.usda"
 }
