@@ -13,5 +13,7 @@ struct testApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowStyle(.volumetric)
+        .defaultSize(width :6, height: 6, depth: 6, in: .centimeters)
     }
 }

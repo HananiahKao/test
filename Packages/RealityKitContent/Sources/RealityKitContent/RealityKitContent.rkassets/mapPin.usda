@@ -5,77 +5,20 @@
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "Root" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+)
 {
-    reorder nameChildren = ["Material1", "Cone", "Sphere"]
-    rel material:binding = None (
-        bindMaterialAs = "weakerThanDescendants"
-    )
-
-    def Sphere "Sphere" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/Material1> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.05
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (0.5, 0.5, 0.5)
-        float3 xformOp:translate = (0, 0, 0.0004)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def RealityKitComponent "Collider"
-        {
-            uint group = 1
-            uniform token info:id = "RealityKit.Collider"
-            uint mask = 4294967295
-            token type = "Default"
-
-            def RealityKitStruct "Shape"
-            {
-                float3 extent = (0.2, 0.2, 0.2)
-                float radius = 0.05
-                token shapeType = "Sphere"
-            }
-        }
-
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-    }
-
-    def Cone "Cone" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-        customData = {
-            float3 rotationEulerHint = (3.1415927, 0, 0)
-        }
-    )
-    {
-        reorder nameChildren = ["RealityKitContent_colorComponent", "Material1"]
-        uniform token axis = "Y"
-        double height = 0.1
-        rel material:binding = </Root/Material1> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.008
-        quatf xformOp:orient = (-4.371139e-8, 1, 0, 0)
-        float3 xformOp:translate = (0.0006260313, -0.07, -3.7252903e-9)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
+    reorder nameChildren = ["Material1", "mapPin"]
     def Material "Material1"
     {
         token outputs:mtlx:surface.connect = </Root/Material1/PreviewSurface.outputs:out>
         token outputs:realitykit:vertex
         token outputs:surface.connect = </Root/Material1/UsdPreviewSurface.outputs:surface>
         string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:realitykit:vertex"]
-        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (299.25, 99.5)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (415.99265, 98.71059)
         float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
-        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 6
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 26
 
         def Shader "PreviewSurface" (
             active = true
@@ -84,8 +27,8 @@ def Xform "Root"
             uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
             float inputs:clearcoat
             float inputs:clearcoatRoughness
-            color3f inputs:diffuseColor
-            color3f inputs:emissiveColor
+            color3f inputs:diffuseColor.connect = </Root/Material1/Constant.outputs:out>
+            color3f inputs:emissiveColor.connect = </Root/Material1/Constant.outputs:out>
             float inputs:ior
             float inputs:metallic = 0
             float3 inputs:normal = (0, 0, 1)
@@ -96,8 +39,8 @@ def Xform "Root"
             token outputs:out
             float2 ui:nodegraph:node:pos = (99.33984, 79.84375)
             float2 ui:nodegraph:node:size = (159.5, 307)
-            int ui:nodegraph:node:stackingOrder = 17
-            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:diffuseColor", "inputs:roughness", "inputs:roughness", "Advanced", "inputs:normal"]
+            int ui:nodegraph:node:stackingOrder = 20
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:roughness", "inputs:roughness", "Advanced", "inputs:normal"]
         }
 
         def Shader "UsdPreviewSurface" (
@@ -106,6 +49,84 @@ def Xform "Root"
         {
             uniform token info:id = "UsdPreviewSurface"
             token outputs:surface
+        }
+
+        def Shader "Constant"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (1, 0, 0) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-189.0607, 54.14414)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 24
+        }
+    }
+
+    def Xform "mapPin" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Material1> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+
+        def Cone "Cone" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (3.1415927, 0, 0)
+            }
+        )
+        {
+            reorder nameChildren = ["RealityKitContent_colorComponent", "Material1"]
+            uniform token axis = "Y"
+            double height = 0.1
+            rel material:binding = </Root/Material1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.008
+            quatf xformOp:orient = (-4.371139e-8, 1, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.0006260313, -0.07, -3.7252903e-9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def Sphere "Sphere" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Material1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.05
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.5, 0.5, 0.5)
+            float3 xformOp:translate = (0, 0, 0.0004)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    float radius = 0.05
+                    token shapeType = "Sphere"
+                }
+            }
+
+            def RealityKitComponent "InputTarget"
+            {
+                uniform token info:id = "RealityKit.InputTarget"
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "ShaderGraphEditorPluginID",
   "openSceneRelativePaths" : [
-
+    "mapPin.usda"
   ],
   "recentIdentifiers" : {
     "26DBAE76-5DD8-47B6-A085-1B4ADA111097" : [
@@ -259,6 +259,50 @@
       }
     ],
     "CF2946DB-4CE0-40C7-9218-9A4F62663528" : [
+      {
+        "date" : 743410933.258442,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.8750056,
+          -0.48411277,
+          0,
+          0,
+          0.48411277,
+          0.8750056,
+          0,
+          -2.2351742e-08,
+          0.037695933,
+          0.14188513,
+          1
+        ]
+      },
+      {
+        "date" : 743410915.961725,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.8750056,
+          -0.48411277,
+          0,
+          0,
+          0.48411277,
+          0.8750056,
+          0,
+          0.029636227,
+          0.085734904,
+          0.5697827,
+          1
+        ]
+      },
       {
         "date" : 743410600.479136,
         "title" : "Untitled",
