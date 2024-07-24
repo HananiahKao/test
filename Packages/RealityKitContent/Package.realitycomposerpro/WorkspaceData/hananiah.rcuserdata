@@ -1,7 +1,7 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "mapPin.usda"
+
   ],
   "recentIdentifiers" : {
     "26DBAE76-5DD8-47B6-A085-1B4ADA111097" : [
@@ -348,6 +348,5 @@
         ]
       }
     ]
-  },
-  "selectedSceneRelativePath" : "mapPin.usda"
+  }
 }
