@@ -12,8 +12,10 @@ struct testApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .padding()
         }
         .windowStyle(.volumetric)
-        .defaultSize(width :6, height: 6, depth: 6, in: .centimeters)
+        .defaultSize(width: 200, height: 200, depth: 200, in: .meters)
+        
     }
 }

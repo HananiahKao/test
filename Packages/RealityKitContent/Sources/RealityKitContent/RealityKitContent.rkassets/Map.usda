@@ -1,0 +1,151 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Cube", "MyMaterial"]
+    def Cube "Cube" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["MyMaterial", "DefaultMaterial"]
+        rel material:binding = </Root/Cube/MyMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 2
+        float3 xformOp:scale = (1, 2.220446e-16, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "MyMaterial"
+        {
+            prepend token outputs:mtlx:surface.connect = </Root/Cube/MyMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex.connect = </Root/Cube/MyMaterial/GeometryModifier.outputs:out>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1268.0208, 343.37454)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 83
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = </Root/Cube/MyMaterial/Image.outputs:out>
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (977.3233, 140.26479)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 99
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:diffuseColor", "inputs:metallic"]
+            }
+
+            def Shader "Modulo_1"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = </Root/Cube/MyMaterial/Separate3.outputs:outz>
+                float inputs:in2 = 0.1
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (389.3047, 168.34766)
+                float2 ui:nodegraph:node:size = (63, 38.5)
+                int ui:nodegraph:node:stackingOrder = 45
+            }
+
+            def Shader "Ifgreater_1"
+            {
+                uniform token info:id = "ND_ifgreater_color3"
+                color3f inputs:in1 = (1, 1, 1) (
+                    colorSpace = "lin_srgb"
+                )
+                color3f inputs:in2
+                float inputs:value1.connect = </Root/Cube/MyMaterial/Modulo_1.outputs:out>
+                float inputs:value2 = 0.02
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (554.46484, 277.3086)
+                float2 ui:nodegraph:node:size = (113.5, 163)
+                int ui:nodegraph:node:stackingOrder = 49
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value1"]
+            }
+
+            def Shader "Ifgreater"
+            {
+                uniform token info:id = "ND_ifgreater_color3"
+                color3f inputs:in1 = (1, 1, 1) (
+                    colorSpace = "lin_srgb"
+                )
+                color3f inputs:in2
+                float inputs:value1.connect = </Root/Cube/MyMaterial/Modulo.outputs:out>
+                float inputs:value2 = 0.02
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (546.5, 99.5)
+                float2 ui:nodegraph:node:size = (109, 163)
+                int ui:nodegraph:node:stackingOrder = 58
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value1", "inputs:value2", "inputs:value1"]
+            }
+
+            def Shader "Modulo"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = </Root/Cube/MyMaterial/Separate3.outputs:outx>
+                float inputs:in2 = 0.1
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (400.5, 99.5)
+                float2 ui:nodegraph:node:size = (63, 38.5)
+                int ui:nodegraph:node:stackingOrder = 59
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+            }
+
+            def Shader "Separate3"
+            {
+                uniform token info:id = "ND_separate3_vector3"
+                float3 inputs:in.connect = </Root/Cube/MyMaterial/Position.outputs:out>
+                float outputs:outx
+                float outputs:outy
+                float outputs:outz
+                float2 ui:nodegraph:node:pos = (251.25, 99.5)
+                float2 ui:nodegraph:node:size = (115.5, 145)
+                int ui:nodegraph:node:stackingOrder = 60
+            }
+
+            def Shader "Position"
+            {
+                uniform token info:id = "ND_position_vector3"
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (66.75, 99.5)
+                float2 ui:nodegraph:node:size = (133.5, 40)
+                int ui:nodegraph:node:stackingOrder = 61
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3"
+                color3f inputs:in1.connect = </Root/Cube/MyMaterial/Ifgreater.outputs:out>
+                color3f inputs:in2.connect = </Root/Cube/MyMaterial/Ifgreater_1.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (672.9837, 214.13295)
+                float2 ui:nodegraph:node:size = (60, 36)
+                int ui:nodegraph:node:stackingOrder = 62
+            }
+
+            def Shader "Image"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @1024.png@
+                string inputs:filtertype
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (768.5055, 187.99588)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 98
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:default"]
+            }
+        }
+    }
+}
+

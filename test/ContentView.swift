@@ -13,8 +13,8 @@ struct ContentView: View {
     @State var text : String = "Hello, world!"
     var body: some View {
         VStack {
-            Model3D(named: "mapPin", bundle: realityKitContentBundle)
-                .padding(.bottom, 50)
+            Model3D(named: "Map", bundle: realityKitContentBundle)
+                .padding(.bottom, 0)
                 .onTapGesture {
                     text = text == "" ? "Hello,world!" : ""
                 }
@@ -24,6 +24,6 @@ struct ContentView: View {
     }
 }
 
-#Preview(windowStyle: .automatic) {
+#Preview(windowStyle: .volumetric) {
     ContentView()
 }
