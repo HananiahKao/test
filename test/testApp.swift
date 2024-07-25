@@ -11,11 +11,11 @@ import SwiftUI
 struct testApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SphereView()
                 .padding()
         }
-        .windowStyle(.volumetric)
-        .defaultSize(width: 200, height: 200, depth: 200, in: .meters)
+        .windowStyle(.automatic)
+//        .defaultSize(width: 1, height: 1080, depth: 1080, in: .centimeters)
         
     }
 }

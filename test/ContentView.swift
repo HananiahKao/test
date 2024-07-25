@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var text : String = "Hello, world!"
     var body: some View {
         VStack {
+            Spacer()
             Model3D(named: "Map", bundle: realityKitContentBundle)
                 .padding(.bottom, 0)
                 .onTapGesture {

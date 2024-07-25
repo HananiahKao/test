@@ -12,6 +12,7 @@
 		CB096E692C4E42070000201A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB096E682C4E42070000201A /* ContentView.swift */; };
 		CB096E6B2C4E42090000201A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB096E6A2C4E42090000201A /* Assets.xcassets */; };
 		CB096E6E2C4E42090000201A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB096E6D2C4E42090000201A /* Preview Assets.xcassets */; };
+		CB24860D2C51DDF70006AD8E /* SphereVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB24860C2C51DDF70006AD8E /* SphereVeiw.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		CB096E6A2C4E42090000201A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB096E6D2C4E42090000201A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB096E6F2C4E42090000201A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB24860C2C51DDF70006AD8E /* SphereVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphereVeiw.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				CB096E662C4E42070000201A /* testApp.swift */,
+				CB24860C2C51DDF70006AD8E /* SphereVeiw.swift */,
 				CB096E682C4E42070000201A /* ContentView.swift */,
 				CB096E6F2C4E42090000201A /* Info.plist */,
 				CB096E6A2C4E42090000201A /* Assets.xcassets */,
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB24860D2C51DDF70006AD8E /* SphereVeiw.swift in Sources */,
 				CB096E692C4E42070000201A /* ContentView.swift in Sources */,
 				CB096E672C4E42070000201A /* testApp.swift in Sources */,
 			);
