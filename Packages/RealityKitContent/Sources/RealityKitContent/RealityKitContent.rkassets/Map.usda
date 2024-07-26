@@ -11,6 +11,10 @@
 def Xform "Root"
 {
     reorder nameChildren = ["Cube", "MyMaterial"]
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
     def Cube "Cube" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -67,6 +71,53 @@ def Xform "Root"
                 float2 ui:nodegraph:node:size = (148.5, 199)
                 int ui:nodegraph:node:stackingOrder = 160
                 string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:default"]
+            }
+        }
+    }
+
+    def Cube "Cube_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Cube_1/DefaultMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 10.8
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.02, 0.75)
+        float3 xformOp:translate = (0, -0.11, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:mtlx:surface.connect = </Root/Cube_1/DefaultMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Cube_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+            def Shader "DefaultSurfaceShader" (
+                active = false
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:emissiveColor = (0, 0, 0) (
+                    colorSpace = "lin_srgb"
+                )
+                float inputs:ior = 1.5
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 1
             }
         }
     }

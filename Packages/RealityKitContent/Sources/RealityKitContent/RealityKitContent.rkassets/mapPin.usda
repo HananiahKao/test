@@ -72,6 +72,8 @@ def Xform "Root" (
         rel material:binding = </Root/Material1> (
             bindMaterialAs = "strongerThanDescendants"
         )
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Cone "Cone" (
             active = true
@@ -90,7 +92,7 @@ def Xform "Root" (
             double radius = 0.008
             quatf xformOp:orient = (-4.371139e-8, 1, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.0006260313, -0.07, -3.7252903e-9)
+            float3 xformOp:translate = (0, -0.07, -3.7252903e-9)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
         }
 
@@ -105,7 +107,7 @@ def Xform "Root" (
             double radius = 0.05
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (0.5, 0.5, 0.5)
-            float3 xformOp:translate = (0, 0, 0.0004)
+            float3 xformOp:translate = (0, 0, 0)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def RealityKitComponent "Collider"
