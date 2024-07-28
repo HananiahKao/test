@@ -23,20 +23,7 @@ struct ContentView: View {
             .popover(isPresented: $show) {
                 DetailView()
             }
-            RealityView { content in
-                let model = ModelEntity(
-                    mesh: .generateSphere(radius: 0.025),
-                    materials: [SimpleMaterial(color: .red,roughness: 0.5,isMetallic: false)])
-                let model2 = ModelEntity(mesh: .generateCone(height: 0.1, radius: 0.008), materials: [SimpleMaterial(color: .red, roughness: 0.5, isMetallic: false)])
-                content.add(model)
-                content.add(model2)
-                model2.setPosition([0,0,0.1], relativeTo: model)
-            } /*attachments: {
-                Button("button") {
-                    
-                }
-            }*/
-
+            mapPin(color: .blue)
             Model3D(named: "Map", bundle: realityKitContentBundle) { model in
                 model.model?
                     .resizable()
@@ -51,4 +38,23 @@ struct ContentView: View {
 
 #Preview(windowStyle: .volumetric) {
     ContentView()
+}
+
+struct mapPin: View {
+    @State var color : UIColor
+    var body: some View {
+        RealityView { content in
+            let model = ModelEntity(
+                mesh: .generateSphere(radius: 0.025),
+                materials: [SimpleMaterial(color: color,roughness: 0.5,isMetallic: false)])
+            let model2 = ModelEntity(mesh: .generateCone(height: 0.1, radius: 0.008), materials: [SimpleMaterial(color: color, roughness: 0.5, isMetallic: false)])
+            content.add(model)
+            content.add(model2)
+            model2.setPosition([0,-0.07,0], relativeTo: model)
+            model2.setOrientation(simd_quatf(ix: 1, iy: 0, iz: 0, r: 0), relativeTo: model)
+        }
+        .onTapGesture {
+            color = .red
+        }
+    }
 }
