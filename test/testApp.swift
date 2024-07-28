@@ -15,6 +15,6 @@ struct testApp: App {
                 .padding()
         }
         .windowStyle(.volumetric)
-        .defaultSize(width: 810, height: 1, depth: 1080)
+        .defaultSize(width: 810, height: 30, depth: 1080)
     }
 }
